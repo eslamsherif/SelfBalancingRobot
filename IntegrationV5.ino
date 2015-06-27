@@ -53,7 +53,7 @@ float K_0, K_1;
 double Setpoint = 0;
 //distance away from setpoint
 double error, ITerm, lastInput, dInput;
-double Kp = 30.0, Ki = 0.0, Kd = 4.5;
+double Kp = 35.0, Ki = 3.0, Kd = 5.5;
 unsigned long SampleTime = 100;
 unsigned long lastTime;
 double outMin = -255.0, outMax = 255.0;
@@ -116,7 +116,7 @@ void loop() {
     if ( actAngle < -30 || actAngle > 30)
       Speed = 0;    //No point of Trying to balance the robot if it is after 30 degrees
     
-//    Debug_PID();
+    Debug_PID();
     
     Drive_Motor( Speed, Dir); 
     
@@ -224,46 +224,46 @@ void Compute()
    }
 }
 
-////5.X Debug Functions
-////5.1 Printing MPU6050 Output Raw Values
-////TODO: More Style Formating
-//void Debug_Raw() {
-//    // display tab-separated accel/gyro x/y/z values
-//    Serial.print(F("MPU Raw Readings: "));
-//    Serial.print(ax); Serial.print("\t");
-//    Serial.print(ay); Serial.print("\t");
-//    Serial.print(az); Serial.print("\t");
-//    Serial.print(gx); Serial.print("\t");
-//    Serial.print(gy); Serial.print("\t");
-//    Serial.println(gz);
-//}
-//
-//void Debug_Orient() {
-//    Serial.print(F("Robot Orientation: "));
-//    Serial.print(acc_angle); Serial.print("\t");
-//    Serial.println(gyro_rate);
-//}
-//
-//void Debug_Filtered() {
-//    Serial.print(F("Robot Actual Angle: "));
-//    Serial.print(F("Angle:"));         Serial.println(actAngle);
-//}
-//
-//void Debug_PID() {
-//    Serial.print(F("PID: "));
-//    Serial.print(F("Angle:"));         Serial.print(actAngle);       Serial.print("\t");
-//    Serial.print(F("Error:"));         Serial.print(error);          Serial.print("\t");
-//    Serial.print(F("Proportional:"));  Serial.print(Kp * error);     Serial.print("\t");
-//    Serial.print(F("Integral:"));      Serial.print(ITerm);          Serial.print("\t");
-//    Serial.print(F("Derivative:"));    Serial.print(Kd * dInput);    Serial.print("\t");
-//    Serial.print(F("Output:"));        Serial.print(output);         Serial.print("\t");
-//    Serial.print(F("Dir:"));           Serial.print(Dir);            Serial.print("\t");
-//    Serial.print(F("Speed:"));         Serial.println(Speed);
-//}
-//
-//void Debug_Motion() {
-//    Serial.print(F("Robot Motion: "));
-//    Serial.print(F("Angle:"));         Serial.print(actAngle);       Serial.print("\t");
-//    Serial.print(F("Dir:"));           Serial.print(Dir);            Serial.print("\t");
-//    Serial.print(F("Speed:"));         Serial.println(Speed);
-//}
+//5.X Debug Functions
+//5.1 Printing MPU6050 Output Raw Values
+//TODO: More Style Formating
+void Debug_Raw() {
+    // display tab-separated accel/gyro x/y/z values
+    Serial.print(F("MPU Raw Readings: "));
+    Serial.print(ax); Serial.print("\t");
+    Serial.print(ay); Serial.print("\t");
+    Serial.print(az); Serial.print("\t");
+    Serial.print(gx); Serial.print("\t");
+    Serial.print(gy); Serial.print("\t");
+    Serial.println(gz);
+}
+
+void Debug_Orient() {
+    Serial.print(F("Robot Orientation: "));
+    Serial.print(acc_angle); Serial.print("\t");
+    Serial.println(gyro_rate);
+}
+
+void Debug_Filtered() {
+    Serial.print(F("Robot Actual Angle: "));
+    Serial.print(F("Angle:"));         Serial.println(actAngle);
+}
+
+void Debug_PID() {
+    Serial.print(F("PID: "));
+    Serial.print(F("Angle:"));         Serial.print(actAngle);       Serial.print("\t");
+    Serial.print(F("Error:"));         Serial.print(error);          Serial.print("\t");
+    Serial.print(F("Proportional:"));  Serial.print(Kp * error);     Serial.print("\t");
+    Serial.print(F("Integral:"));      Serial.print(ITerm);          Serial.print("\t");
+    Serial.print(F("Derivative:"));    Serial.print(Kd * dInput);    Serial.print("\t");
+    Serial.print(F("Output:"));        Serial.print(output);         Serial.print("\t");
+    Serial.print(F("Dir:"));           Serial.print(Dir);            Serial.print("\t");
+    Serial.print(F("Speed:"));         Serial.println(Speed);
+}
+
+void Debug_Motion() {
+    Serial.print(F("Robot Motion: "));
+    Serial.print(F("Angle:"));         Serial.print(actAngle);       Serial.print("\t");
+    Serial.print(F("Dir:"));           Serial.print(Dir);            Serial.print("\t");
+    Serial.print(F("Speed:"));         Serial.println(Speed);
+}
